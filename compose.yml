@@ -12,23 +12,31 @@ services:
   auth:
     container_name: auth-cont
     build: ./auth/
+    entrypoint: ["trivy"]
+    command: ["image", "./auth/"]
     ports:
       - "5001:5001"
 
   book:
     container_name: book-cont
     build: ./book/
+    entrypoint: ["trivy"]
+    command: ["image", "./book/"]
     ports:
       - "5002:5002"
 
   borrow:
     container_name: borrow-cont
     build: ./borrow/
+    entrypoint: ["trivy"]
+    command: ["image", "./borrow/"]
     ports:
       - "5003:5003"
 
   app:
     container_name: app-cont
     build: .
+    entrypoint: ["trivy"]
+    command: ["image", "."]
     ports:
       - "5000:5000"
