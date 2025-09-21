@@ -4,43 +4,34 @@ services:
   db:
     container_name: db-cont
     build: ./database/
+    entrypoint: [ "trivy", "image", "./database/" ]
     ports:
       - "3306:3306"
 
   auth:
     container_name: auth-cont
     build: ./auth/
+    entrypoint: [ "trivy", "image", "./auth/" ]
     ports:
       - "5001:5001"
 
   book:
     container_name: book-cont
     build: ./book/
+    entrypoint: [ "trivy", "image", "./book/" ]
     ports:
       - "5002:5002"
 
   borrow:
     container_name: borrow-cont
     build: ./borrow/
+    entrypoint: [ "trivy", "image", "./borrow/" ]
     ports:
       - "5003:5003"
 
   app:
     container_name: app-cont
     build: .
+    entrypoint: [ "trivy", "image", "." ]
     ports:
       - "5000:5000"
-
-  trivy:
-    image: aquasec/trivy:latest
-    entrypoint: [ "trivy", "image", "./database/" ]
-    entrypoint: [ "trivy", "image", "./auth/" ]
-    entrypoint: [ "trivy", "image", "./book/" ]
-    entrypoint: [ "trivy", "image", "./borrow/" ]
-    entrypoint: [ "trivy", "image", "." ]
-    depends_on:
-      - db
-      - auth
-      - book
-      - borrow
-      - app
