@@ -35,3 +35,25 @@ services:
     command: trivy image .
     ports:
       - "5000:5000"
+
+
+  trivy:
+    image: aquasec/trivy:latest
+    container_name: trivy-scan
+    depends_on:
+      - db
+      - auth
+      - book
+      - borrow
+      - app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: >
+      sh -c "
+        trivy image db-cont &&
+        trivy image auth-cont &&
+        trivy image book-cont &&
+        trivy image borrow-cont &&
+        trivy image app-cont
+      "
+    restart: "no"
