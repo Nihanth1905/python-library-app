@@ -4,28 +4,28 @@ services:
   db:
     container_name: db-cont
     build: ./database/
-    command: trivy image ./database/
+    command: trivy image database
     ports:
       - "3306:3306"
 
   auth:
     container_name: auth-cont
     build: ./auth/
-    command: trivy image ./auth/
+    command: trivy image auth
     ports:
       - "5001:5001"
 
   book:
     container_name: book-cont
     build: ./book/
-    command: trivy image ./book/
+    command: trivy image book
     ports:
       - "5002:5002"
 
   borrow:
     container_name: borrow-cont
     build: ./borrow/
-    command: trivy image ./borrow/
+    command: trivy image borrow
     ports:
       - "5003:5003"
 
