@@ -33,11 +33,11 @@ services:
 
   trivy:
     image: aquasec/trivy:latest
-    entrypoint: [ "trivy", "image", "--severity", "HIGH,CRITICAL", "./database/" ]
-    entrypoint: [ "trivy", "image", "--severity", "HIGH,CRITICAL", "./auth/" ]
-    entrypoint: [ "trivy", "image", "--severity", "HIGH,CRITICAL", "./book/" ]
-    entrypoint: [ "trivy", "image", "--severity", "HIGH,CRITICAL", "./borrow/" ]
-    entrypoint: [ "trivy", "image", "--severity", "HIGH,CRITICAL", "." ]
+    entrypoint: [ "trivy", "image", "./database/" ]
+    entrypoint: [ "trivy", "image", "./auth/" ]
+    entrypoint: [ "trivy", "image", "./book/" ]
+    entrypoint: [ "trivy", "image", "./borrow/" ]
+    entrypoint: [ "trivy", "image", "." ]
     depends_on:
       - db
       - auth
