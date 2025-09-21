@@ -4,6 +4,8 @@ services:
   db:
     container_name: db-cont
     build: ./database/
+    entrypoint: ["trivy"]
+    command: ["image", "./database/:latest"]
     ports:
       - "3306:3306"
 
